@@ -1,0 +1,14 @@
+DROP TABLE IF EXISTS test_table;
+CREATE TABLE test_table (
+    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    username VARCHAR(25) UNIQUE NOT NULL
+);
+
+CREATE TABLE comments (
+    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    content TEXT NOT NULL,
+    parent_id INTEGER REFERENCES comments(id) DEFAULT NULL,
+    post_id INTEGER REFERENCES posts(id)
+);
+
+// parentType, parentId
